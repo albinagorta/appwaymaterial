@@ -1,0 +1,61 @@
+<div class="body">
+
+  <div class="login">
+    <form #dataForm="ngForm">
+      <img [src]="logo" alt="IMGEB">
+      <h1 class="h3 mb-3 fw-normal">Login</h1>
+      <mat-error *ngIf="isSubmitted && (email.errors && email?.errors?.['required'] || password.errors && password.errors?.['required'])">
+        El campo email y la contraseña son requeridos
+      </mat-error>
+      <br>
+      <mat-form-field class="ancho" appearance="fill">
+          <mat-label>Email</mat-label>
+          <input 
+          matInput 
+          type="email"
+          name="email"  
+          [(ngModel)]="addDataForm.email" 
+          #email="ngModel"
+          required
+          pattern="^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z0-9]{2,3}$" 
+          >
+          <mat-icon matSuffix>alternate_email</mat-icon>
+          <mat-error *ngIf="email.errors && isSubmitted && email?.errors?.['required']">
+            El correo electrónico es requerido
+          </mat-error>
+          <mat-error *ngIf="email.errors && isSubmitted && !email?.errors?.['touched'] && email?.errors?.['pattern']">
+            El correo electrónico es invalido
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="ancho" appearance="fill">
+          <mat-label>Contraseña</mat-label>
+          <input 
+          matInput
+          type="password"
+          name="password" 
+          [(ngModel)]="addDataForm.password" 
+          #password="ngModel"
+          required
+          >
+          <mat-icon matSuffix >remove_red_eye</mat-icon>
+          <mat-error *ngIf="password.errors && isSubmitted && password.errors?.['required']">
+            la Contraseña es requerido
+          </mat-error>
+        </mat-form-field>
+
+        <div class="ancho" appearance="fill">
+          <mat-checkbox  
+          matInput
+          name="remember" 
+          [(ngModel)]="addDataForm.remember"
+          >Recordar contraseña</mat-checkbox>
+        </div>
+
+        <br>
+        <button class="ancho" mat-raised-button mat-button color="primary" type="button" (click)="login(dataForm.form.valid)">Ingresar</button>
+      </form>
+  </div>
+</div>
+
+

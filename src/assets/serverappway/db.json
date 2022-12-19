@@ -1,0 +1,115 @@
+{
+  "menu": [
+    {
+      "id": 1,
+      "nombre": "Categorias",
+      "ruta": "/categorias"
+    },
+    {
+      "id": 2,
+      "nombre": "Productos",
+      "ruta": "/productos"
+    },
+    {
+      "id": 3,
+      "nombre": "Clientes",
+      "ruta": "/clientes"
+    },
+    {
+      "id": 4,
+      "nombre": "Usuarios",
+      "ruta": "/usuarios"
+    }
+  ],
+  "usuarios": [
+    {
+      "id": 1,
+      "nombres": "John Doe",
+      "apellidos": "Albinagorta",
+      "email": "angel@gmail.com",
+      "password": "123",
+      "in_estado": "1"
+    },
+    {
+      "nombres": "Angel",
+      "apellidos": "Albinagorta",
+      "email": "admin@gmail.com",
+      "password": "123",
+      "in_estado": "0",
+      "id": 2
+    }
+  ],
+  "productos": [
+    {
+      "nombre": "Angel Albinagorta",
+      "stock": 3,
+      "precio": 0.02,
+      "in_estado": "1",
+      "id_categoria": 3,
+      "id": 2
+    },
+    {
+      "nombre": "Pedro",
+      "stock": 20,
+      "precio": 20,
+      "in_estado": "1",
+      "id_categoria": 4,
+      "id": 3
+    }
+  ],
+  "categorias": [
+    {
+      "nombre": "Pedro 1",
+      "in_estado": "0",
+      "id": 1
+    },
+    {
+      "nombre": "Angel Albinagorta",
+      "in_estado": "1",
+      "id": 2
+    },
+    {
+      "nombre": "GOTRON GROUP (HK) CO. LIMITED",
+      "in_estado": "0",
+      "id": 3
+    },
+    {
+      "nombre": "Luis Albinagorta",
+      "in_estado": "1",
+      "id": 4
+    },
+    {
+      "nombre": "Angelles",
+      "in_estado": "0",
+      "id": 6
+    },
+    {
+      "nombre": "juan uno dos",
+      "in_estado": "0",
+      "id": 7
+    },
+    {
+      "nombre": "Angel Albinagorta",
+      "in_estado": "1",
+      "id": 8
+    }
+  ],
+  "clientes": [
+    {
+      "nombres": "Angel",
+      "apellidos": "Albinagorta",
+      "email": "angel@gmail.com",
+      "direccion": "LIMA\nLIMA",
+      "celular": "878778787",
+      "id": 2
+    },
+    {
+      "nombres": "Luis",
+      "apellidos": "Albinagorta",
+      "email": "admin@gmail.com",
+      "direccion": "LIMA",
+      "celular": "123456789",
+      "id": 3
+    }
+  ]
+}
