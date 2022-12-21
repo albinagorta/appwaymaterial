@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl:'https://waytech.glitch.me/'
+  URL_BACKEND:'https://waytech.glitch.me'
 };

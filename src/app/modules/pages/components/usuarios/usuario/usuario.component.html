@@ -1,0 +1,85 @@
+<div class="cord-body">
+
+    <div class="card-form">
+      <form #dataForm="ngForm">
+        <h2 class="h3 mb-3 fw-normal">{{titulo_vista}} Usuario</h2>
+        <br>
+
+        <mat-form-field class="w-100" appearance="fill">
+            <mat-label>Nombre </mat-label>
+            <input 
+            matInput 
+            type= "text" class="form-control" required maxlength="255"
+            [(ngModel)]="UsuarioForm.nombres" name="nombres" #nombres="ngModel">
+            <mat-error *ngIf="nombres.errors && isSubmitted && nombres?.errors?.['required']">
+              El nombre es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-100" appearance="fill">
+            <mat-label>Apellidos </mat-label>
+            <input 
+            matInput 
+            type= "text" class="form-control" required maxlength="255"
+            [(ngModel)]="UsuarioForm.apellidos" name="apellidos" #apellidos="ngModel">
+            <mat-error *ngIf="apellidos.errors && isSubmitted && apellidos?.errors?.['required']">
+              El Apellido es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-100" appearance="fill">
+            <mat-label>Email </mat-label>
+            <input 
+            matInput 
+            type= "text" class="form-control" required maxlength="255"
+            [(ngModel)]="UsuarioForm.email" name="email" #email="ngModel"
+            pattern="^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z0-9]{2,3}$">
+            <mat-error *ngIf="email.errors && isSubmitted && email?.errors?.['required']">
+              El correo electrónico es requerido
+            </mat-error>
+            <mat-error *ngIf="email.errors && isSubmitted && !email?.errors?.['touched'] && email?.errors?.['pattern']">
+              El correo electrónico es invalido
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="w-100" appearance="fill">
+            <mat-label>Contraseña</mat-label>
+            <input 
+            matInput
+            type="password"
+            name="password" 
+            [(ngModel)]="UsuarioForm.password" 
+            #password="ngModel"
+            required
+            >
+            <mat-error *ngIf="password.errors && isSubmitted && password.errors?.['required']">
+              la Contraseña es requerido
+            </mat-error>
+          </mat-form-field>
+
+          <div class="w-100" appearance="fill">
+            <label id="in_estado" class="label-radio-group">Estado <span class="requiredStar"> * </span></label>
+            <mat-radio-group 
+            aria-labelledby="in_estado" 
+            class="form-radio-group"
+            name="in_estado"
+            [(ngModel)]="UsuarioForm.in_estado"
+            required
+            (change)="validarInStado()"
+            >
+              <mat-radio-button value="1" >Activado</mat-radio-button>
+              <mat-radio-button value="0">Desactivado</mat-radio-button>
+              <mat-error *ngIf="!validain_estado && isSubmitted validationError">
+                El estado es requerido
+              </mat-error>
+            </mat-radio-group>
+          </div>
+
+          <br>
+          <button class="w-auto" mat-raised-button mat-button color="primary" type="button" (click)="GuardarData(dataForm.form.valid)">Enviar</button>
+        </form>
+    </div>
+  </div>
+  
+  
+  

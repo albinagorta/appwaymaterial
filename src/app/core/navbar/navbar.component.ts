@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuService } from 'src/app/modules/service/menu.service';
-import { UsuariosService } from 'src/app/modules/service/usuarios.service';
-import { Menu } from '../../modules/interfaces/menu.interface';
+import { MenuService } from 'src/app/modules/pages/services/menu.service';
+import { UsuariosService } from 'src/app/modules/pages/services/usuarios.service';
+import { Menu } from '../../modules/pages/interfaces/menu.interface';
 
 @Component({
   selector: 'app-navbar',

@@ -2,9 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { formlogin } from 'src/app/modules/interfaces/formlogin.interface';
-import { UsuariosService } from 'src/app/modules/service/usuarios.service';
-import { snackBar } from 'src/app/global/snackbar';
+import { formlogin } from 'src/app/modules/pages/interfaces/formlogin.interface';
+import { UsuariosService } from 'src/app/modules/pages/services/usuarios.service';
+import { snackBar } from 'src/app/modules/pages/helpers/snackbar';
 
 
 @Component({

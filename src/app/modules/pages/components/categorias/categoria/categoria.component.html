@@ -1,0 +1,45 @@
+<div class="cord-body">
+
+  <div class="card-form">
+    <form #dataForm="ngForm">
+      <h2 class="h3 mb-3 fw-normal">{{titulo_vista}} Categoria</h2>
+      <br>
+
+      <mat-form-field class="w-100" appearance="fill">
+          <mat-label>Nombre </mat-label>
+          <input 
+          matInput 
+          type= "text" class="form-control" required maxlength="255"
+          [(ngModel)]="CategoriaForm.nombre" name="nombre" #nombre="ngModel">
+          
+          <mat-error *ngIf="nombre.errors && isSubmitted && nombre?.errors?.['required']">
+            El nombre es requerido
+          </mat-error>
+
+        </mat-form-field>
+
+        <div class="w-100" appearance="fill">
+          <label id="in_estado" class="label-radio-group">Estado <span class="requiredStar"> * </span></label>
+          <mat-radio-group 
+          aria-labelledby="in_estado" 
+          class="form-radio-group"
+          name="in_estado"
+          [(ngModel)]="CategoriaForm.in_estado"
+          required
+          (change)="validarInStado()"
+          >
+            <mat-radio-button value="1" >Activado</mat-radio-button>
+            <mat-radio-button value="0">Desactivado</mat-radio-button>
+            <mat-error *ngIf="!validain_estado && isSubmitted">
+              El estado es requerido
+            </mat-error>
+          </mat-radio-group>
+        </div>
+
+        <br>
+        <button class="w-auto" mat-raised-button mat-button color="primary" type="button" (click)="GuardarData(dataForm.form.valid)">Enviar</button>
+      </form>
+  </div>
+</div>
+
+
