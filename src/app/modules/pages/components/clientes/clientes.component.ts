@@ -6,7 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router} from '@angular/router';
 
 //GLOBALES
-import { snackBar } from 'src/app/modules/pages/helpers/snackbar';
+import { snackBarHelper } from 'src/app/modules/pages/helpers/snackbar.helper';
 
 // COMPONENTES
 import { DialogoConfirmacionComponent } from 'src/app/modules/pages/components/dialogo-confirmacion/dialogo-confirmacion.component';
@@ -29,7 +29,7 @@ export class ClientesComponent implements OnInit,AfterViewInit {
   
   constructor(private router: Router, 
     public dialogo: MatDialog,
-    private snackbar: snackBar,
+    private snackbar: snackBarHelper,
     private http : ClienteService
     ) { }
 

@@ -7,7 +7,18 @@
     <mat-label>Buscar</mat-label>
     <input matInput (keyup)="aplicarFiltro($event)" placeholder="Buscar..." #input>
   </mat-form-field>
+
   <div class="mat-elevation-z8">
+    <mat-form-field *ngFor="let filter of filterSelectObj" style="margin-left: 15px;">
+      <mat-label>{{filter.name}}</mat-label>
+      <select matNativeControl name="{{filter.columnProp}}" [(ngModel)]="filter.modelValue"
+        (change)="filterChange(filter,$event)">
+        <option value=""></option>
+        <option [value]="item" *ngFor="let item of filter.options">{{item}}</option>
+      </select>
+    </mat-form-field>
+    &nbsp;
+    <button mat-flat-button color="warn" (click)="resetFilters()">Limpiar</button>
     <table mat-table [dataSource]="dataList" matSort>
 
       <!-- Position Column -->

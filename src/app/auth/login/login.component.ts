@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 import { formlogin } from 'src/app/modules/pages/interfaces/formlogin.interface';
 import { UsuariosService } from 'src/app/modules/pages/services/usuarios.service';
-import { snackBar } from 'src/app/modules/pages/helpers/snackbar';
+import { snackBarHelper } from 'src/app/modules/pages/helpers/snackbar.helper';
 
 
 @Component({
@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
   
   constructor(private router: Router,
                private http: UsuariosService,
-              private snackbar: snackBar
+              private snackbar: snackBarHelper
                ) {
                   
                 }

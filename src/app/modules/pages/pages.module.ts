@@ -8,6 +8,10 @@ import { PagesRouterModule } from './pages-router.module';
 import { MaterialModule } from 'src/app/material/material.module';
 import { CoreModule } from 'src/app/core/core.module';
 
+// HELPERS
+import { MatPaginatorIntl } from '@angular/material/paginator';
+import { PaginadorHelper } from './helpers/paginador.helper';
+
 //COMPONENTES
 import { DialogoConfirmacionComponent } from './components/dialogo-confirmacion/dialogo-confirmacion.component';
 import { PagesComponent } from './pages.component';
@@ -20,8 +24,6 @@ import { ProductosComponent } from './components/productos/productos.component';
 import { ProductoComponent } from './components/productos/producto/producto.component';
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { UsuarioComponent } from './components/usuarios/usuario/usuario.component';
-
-
 
 @NgModule({
   declarations: [
@@ -46,6 +48,13 @@ import { UsuarioComponent } from './components/usuarios/usuario/usuario.componen
     PagesRouterModule
   ],
   exports: [],
+  providers: 
+  [
+    {
+      provide: MatPaginatorIntl, 
+      useClass: PaginadorHelper
+    }
+  ]
 
 })
 

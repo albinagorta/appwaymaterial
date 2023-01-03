@@ -5,13 +5,13 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   providedIn: 'root'
 })
 
-export class snackBar {
+export class snackBarHelper {
   constructor(
-    private snackBar: MatSnackBar
+    private sBar: MatSnackBar
               ) { }
 
   public success(message: string, accion:string = 'X'):void {
-    this.snackBar.open(message, accion, {
+    this.sBar.open(message, accion, {
       horizontalPosition: 'right',
       verticalPosition: 'top',
       duration:2500,
@@ -20,7 +20,7 @@ export class snackBar {
   }
 
   public error(message: string, accion:string = 'X'):void {
-    this.snackBar.open(message, accion, {
+    this.sBar.open(message, accion, {
       horizontalPosition: 'right',
       verticalPosition: 'top',
       duration:2500,
@@ -29,7 +29,7 @@ export class snackBar {
   }
 
   public info(message: string, accion:string = 'X'):void {
-    this.snackBar.open(message, accion, {
+    this.sBar.open(message, accion, {
       horizontalPosition: 'right',
       verticalPosition: 'top',
       duration:2500,

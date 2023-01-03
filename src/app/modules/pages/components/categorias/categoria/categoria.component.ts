@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { snackBar } from 'src/app/modules/pages/helpers/snackbar';
+import { snackBarHelper } from 'src/app/modules/pages/helpers/snackbar.helper';
 
 import { Categoria } from 'src/app/modules/pages/models/categoria.models';
 import { CategoriasService } from 'src/app/modules/pages/services/categorias.service';
@@ -25,7 +25,7 @@ export class CategoriaComponent implements OnInit {
   titulo_vista:string = "Nueva";
 
   constructor(
-    private snackbar: snackBar,
+    private snackbar: snackBarHelper,
     private route: ActivatedRoute,
     private router: Router,
     private http: CategoriasService

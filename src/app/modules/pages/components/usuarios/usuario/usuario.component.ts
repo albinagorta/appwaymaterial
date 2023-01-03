@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { snackBar } from 'src/app/modules/pages/helpers/snackbar';
+import { snackBarHelper } from 'src/app/modules/pages/helpers/snackbar.helper';
 import { Usuario } from 'src/app/modules/pages/models/usuario.models';
 import { UsuariosService } from 'src/app/modules/pages/services/usuarios.service';
 
@@ -26,7 +26,7 @@ export class UsuarioComponent implements OnInit {
   titulo_vista:string = "Nuevo";
 
   constructor(
-            private snackbar: snackBar, 
+            private snackbar: snackBarHelper, 
             private route: ActivatedRoute, 
             private router: Router,
             private http: UsuariosService

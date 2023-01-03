@@ -7,12 +7,12 @@ import { ProductosService } from 'src/app/modules/pages/services/productos.servi
 
 // ENTIDAD
 import { Producto } from 'src/app/modules/pages/models/productos.models';
-import { snackBar } from 'src/app/modules/pages/helpers/snackbar';
+import { snackBarHelper } from 'src/app/modules/pages/helpers/snackbar.helper';
 
 @Component({
   selector: 'app-producto',
   templateUrl: './producto.component.html',
-  styleUrls: ['./producto.component.scss']
+  styleUrls: ['./producto.component.css']
 })
 export class ProductoComponent implements OnInit {
 
@@ -28,7 +28,7 @@ export class ProductoComponent implements OnInit {
   titulo_vista:string = "Nuevo";
 
   constructor(
-            private snackbar: snackBar, 
+            private snackbar: snackBarHelper, 
             private route: ActivatedRoute, 
             private router: Router,
             private httpCat: CategoriasService,

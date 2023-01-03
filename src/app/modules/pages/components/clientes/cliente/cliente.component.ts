@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { snackBar } from 'src/app/modules/pages/helpers/snackbar';
+import { snackBarHelper } from 'src/app/modules/pages/helpers/snackbar.helper';
 import { Cliente } from 'src/app/modules/pages/models/cliente.models';
 import { ClienteService } from 'src/app/modules/pages/services/cliente.service';
 
@@ -10,7 +10,7 @@ import { ClienteService } from 'src/app/modules/pages/services/cliente.service';
 @Component({
   selector: 'app-cliente',
   templateUrl: './cliente.component.html',
-  styleUrls: ['./cliente.component.scss']
+  styleUrls: ['./cliente.component.css']
 })
 export class ClienteComponent implements OnInit {
 
@@ -24,7 +24,7 @@ export class ClienteComponent implements OnInit {
   titulo_vista:string = "Nueva";
 
   constructor(
-            private snackbar: snackBar, 
+            private snackbar: snackBarHelper, 
             private route: ActivatedRoute, 
             private router: Router,
             private http: ClienteService
