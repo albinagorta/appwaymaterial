@@ -25,6 +25,9 @@ import { ProductoComponent } from './components/productos/producto/producto.comp
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { UsuarioComponent } from './components/usuarios/usuario/usuario.component';
 
+import { RolesComponent } from './components/roles/roles.component';
+import { RolComponent } from './components/roles/rol/rol.component';
+
 @NgModule({
   declarations: [
     DialogoConfirmacionComponent,
@@ -37,7 +40,9 @@ import { UsuarioComponent } from './components/usuarios/usuario/usuario.componen
     ProductosComponent,
     ProductoComponent,
     UsuariosComponent,
-    UsuarioComponent
+    UsuarioComponent,
+    RolesComponent,
+    RolComponent
   ],
   imports: [
     FormsModule,

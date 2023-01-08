@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AuthGuard } from './guards/auth.guard';
 
 // COMPONENTES
+import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CategoriasComponent } from './components/categorias/categorias.component';
 import { CategoriaComponent } from './components/categorias/categoria/categoria.component';
@@ -13,7 +14,7 @@ import { ProductosComponent } from './components/productos/productos.component';
 import { ProductoComponent } from './components/productos/producto/producto.component';
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { UsuarioComponent } from './components/usuarios/usuario/usuario.component';
-import { PagesComponent } from './pages.component';
+import { RolesComponent } from './components/roles/roles.component';
 
 
 
@@ -71,7 +72,13 @@ const rutas: Routes = [
         path: 'usuario/:id',
         component: UsuarioComponent,
         title: 'Matenimiento de Usuario'
-      }
+      },
+      /*Matenimiento de roles */
+      {
+        path: 'roles',
+        component: RolesComponent,
+        title: 'Matenimiento de Rol'
+      },
     ],
   }
 ];

@@ -1,0 +1,45 @@
+<h1 mat-dialog-title>{{titulo_vista}} Rol</h1>
+<div mat-dialog-content>
+    <div class="modal-body">
+
+        <div class="modal-form">
+          <form #dataForm="ngForm">
+            <mat-form-field class="w-100" appearance="fill">
+                <mat-label>Nombre </mat-label>
+                <input 
+                matInput 
+                type= "text" class="form-control" required maxlength="255"
+                [(ngModel)]="RolesForm.nombre" name="nombre" #nombre="ngModel">
+                
+                <mat-error *ngIf="nombre.errors && isSubmitted && nombre?.errors?.['required']">
+                  El nombre es requerido
+                </mat-error>
+      
+              </mat-form-field>
+      
+              <div class="w-100" appearance="fill">
+                <label id="in_estado" class="label-radio-group">Estado <span class="requiredStar"> * </span></label>
+                <mat-radio-group 
+                aria-labelledby="in_estado" 
+                class="form-radio-group"
+                name="in_estado"
+                [(ngModel)]="RolesForm.in_estado"
+                required
+                (change)="validarInStado()"
+                >
+                  <mat-radio-button value="1" >Activado</mat-radio-button>
+                  <mat-radio-button value="0">Desactivado</mat-radio-button>
+                  <mat-error *ngIf="!validain_estado && isSubmitted">
+                    El estado es requerido
+                  </mat-error>
+                </mat-radio-group>
+              </div>
+      
+              <br>
+              <button class="w-auto mr-10" mat-raised-button mat-button color="warn" type="button" (click)="cerrarDialogo()">Cancelar</button>
+              <button class="w-auto" mat-raised-button mat-button color="primary" type="button" (click)="GuardarData(dataForm.form.valid)">Guardar</button>
+            </form>
+        </div>
+      </div>
+
+</div>
