@@ -15,8 +15,8 @@ export class CategoriasService {
               private webApiService: WebApiService
               ) { }
 
-  public getAllData(): Observable<any> {
-    return this.webApiService.get(this.URL_END_POINT);
+  public getAllData(parameters : any = null): Observable<any> {
+    return this.webApiService.get(this.URL_END_POINT , parameters);
   }
 
   public deleteDataById(id: any): Observable<any> {

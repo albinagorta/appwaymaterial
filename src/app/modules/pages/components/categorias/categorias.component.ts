@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from "@angular/material/dialog";
@@ -25,57 +25,41 @@ export class CategoriasComponent implements OnInit, AfterViewInit {
   tablaColumns: string[] = ['id', 'nombre', 'estado', 'opciones'];
   dataList: any;
 
-  filterValues:any = {};
-  filterSelectObj:any = [];
-
   @ViewChild(MatPaginator) paginator?: MatPaginator;
   @ViewChild(MatSort) sort?: MatSort;
+  
+  public length = 0;
+  public pageSize = 2;
+  public pageSizeOptions = [5, 10, 25, 100];
+
+  parameters : any  = {};
+  inputfilter : string = "";
 
   constructor(
     private router: Router,
     private httpCat: CategoriasService,
     public dialogo: MatDialog,
     private snackbar: snackBarHelper
-  ) { 
-
-    // Object to create Filter for
-    this.filterSelectObj = [
-      {
-        name: 'ID',
-        columnProp: 'id',
-        options: []
-      }, {
-        name: 'Nombre',
-        columnProp: 'nombre',
-        options: []
-      }, {
-        name: 'Estado',
-        columnProp: 'in_estado',
-        options: []
-      }
-    ]
-  }
+  ) {}
 
   ngOnInit() {
+    this.getparametersInit();
     this.getAllData();
     this.dataList = new MatTableDataSource();
-    this.dataList.filterPredicate = this.createFilter();
   }
 
   ngAfterViewInit() {
-    this.dataList.paginator = this.paginator;
+    // this.dataList.paginator = this.paginator;
     this.dataList.sort = this.sort;
   }
 
   getAllData(): any {
-    this.httpCat.getAllData().subscribe((data: any) => {
+    console.log(this.parameters);
+    this.httpCat.getAllData(this.parameters).subscribe((data: any) => {
+      this.length = data.headers.get('X-Total-Count');
+      console.log(this.length);
       if (data.ok) {
         this.dataList.data = data.body;
-
-        this.filterSelectObj.filter((o:any) => {
-            o.options = this.getFilterObject(data.body, o.columnProp);
-        });
-
       }
     },
       (error: any) => {
@@ -108,8 +92,9 @@ export class CategoriasComponent implements OnInit, AfterViewInit {
   deletedata(data: Categoria) {
     this.httpCat.deleteDataById(data.id).subscribe((data: any) => {
       this.snackbar.success("Registro eliminado");
+      this.getparametersInit();
       this.getAllData();
-
+      this.paginator?.firstPage();
     },
       (error: any) => {
         this.snackbar.error(error.message);
@@ -119,78 +104,24 @@ export class CategoriasComponent implements OnInit, AfterViewInit {
 
   
   aplicarFiltro(event: Event) {
-    // const filterValue = (event.target as HTMLInputElement).value;
-    // this.dataList.filter = filterValue.trim().toLowerCase();
-    this.filterValues['nombre'] = (event.target as HTMLInputElement).value.trim().toLowerCase()
-    this.dataList.filter = JSON.stringify(this.filterValues)
-
-    if (this.dataList.paginator) {
-      this.dataList.paginator.firstPage();
-    }
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.inputfilter = filterValue;
+    // this.parameters['q'] = filterValue;
+    this.getAllData();
+    this.paginator?.firstPage();
   }
 
 
-  // Get Uniqu values from columns to build filter
-  getFilterObject(fullObj:any, key:any) {
-    const uniqChk:any[] = [];
-    fullObj.filter((obj:any) => {
-      if (!uniqChk.includes(obj[key])) {
-        uniqChk.push(obj[key]);
-      }
-      return obj;
-    });
-    return uniqChk;
+  getNextPage(event: PageEvent) {
+   this.parameters["page"] = event.pageIndex+1;
+    this.parameters['limit'] = event.pageSize;
+    this.getAllData();
   }
 
-    // Called on Filter change
-    filterChange(filter:any, event:any) {
-      //let filterValues = {}
-      this.filterValues[filter.columnProp] = event.target.value.trim().toLowerCase()
-      this.dataList.filter = JSON.stringify(this.filterValues)
-    }
-  
-    // Custom filter method fot Angular Material Datatable
-    createFilter() {
-      let filterFunction = function (data: any, filter: string): boolean {
-        let searchTerms = JSON.parse(filter);
-        let isFilterSet = false;
-        for (const col in searchTerms) {
-          if (searchTerms[col].toString() !== '') {
-            isFilterSet = true;
-          } else {
-            delete searchTerms[col];
-          }
-        }
-  
-        console.log(searchTerms);
-  
-        let nameSearch = () => {
-          let found = false;
-          if (isFilterSet) {
-            for (const col in searchTerms) {
-              searchTerms[col].trim().toLowerCase().split(' ').forEach((word : any) => {
-                if (data[col].toString().toLowerCase().indexOf(word) != -1 && isFilterSet) {
-                  found = true
-                }
-              });
-            }
-            return found
-          } else {
-            return true;
-          }
-        }
-        return nameSearch()
-      }
-      return filterFunction
-    }
-  
-  
-    // Reset table filters
-    resetFilters() {
-      this.filterValues = {}
-      this.filterSelectObj.forEach((value:any, key:any) => {
-        value.modelValue = undefined;
-      })
-      this.dataList.filter = "";
-    }
+  getparametersInit(){
+      this.parameters["page"] = 1;
+      this.parameters['limit'] = 2;
+      this.parameters["q"] = this.inputfilter;
+  }
+
 }
