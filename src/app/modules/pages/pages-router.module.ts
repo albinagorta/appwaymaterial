@@ -2,6 +2,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 import { AuthGuard } from './guards/auth.guard';
+import { AdminGuard } from './guards/admin.guard';
+import { UserGuard } from './guards/user.guard';
 
 // COMPONENTES
 import { PagesComponent } from './pages.component';
@@ -17,7 +19,6 @@ import { UsuarioComponent } from './components/usuarios/usuario/usuario.componen
 import { RolesComponent } from './components/roles/roles.component';
 
 
-
 const rutas: Routes = [
   {
     path: '',
@@ -30,11 +31,13 @@ const rutas: Routes = [
       {
         path: 'categorias',
         component: CategoriasComponent,
+        canActivate: [UserGuard],
         title: 'Matenimiento de Categoria'
       },
       {
         path: 'categoria/:id',
         component: CategoriaComponent,
+        canActivate: [UserGuard],
         title: 'Matenimiento de Categoria'
       },
 
@@ -42,11 +45,13 @@ const rutas: Routes = [
       {
         path: 'clientes',
         component: ClientesComponent,
+        canActivate: [UserGuard],
         title: 'Matenimiento de Cliente'
       },
       {
         path: 'cliente/:id',
         component: ClienteComponent,
+        canActivate: [UserGuard],
         title: 'Matenimiento de Cliente'
       },
 
@@ -54,11 +59,13 @@ const rutas: Routes = [
       {
         path: 'productos',
         component: ProductosComponent,
+        canActivate: [UserGuard],
         title: 'Matenimiento de Producto'
       },
       {
         path: 'producto/:id',
         component: ProductoComponent,
+        canActivate: [UserGuard],
         title: 'Matenimiento de Producto'
       },
 
@@ -66,17 +73,20 @@ const rutas: Routes = [
       {
         path: 'usuarios',
         component: UsuariosComponent,
+        canActivate: [AdminGuard],
         title: 'Matenimiento de Usuario'
       },
       {
         path: 'usuario/:id',
         component: UsuarioComponent,
+        canActivate: [AdminGuard],
         title: 'Matenimiento de Usuario'
       },
       /*Matenimiento de roles */
       {
         path: 'roles',
         component: RolesComponent,
+        canActivate: [AdminGuard],
         title: 'Matenimiento de Rol'
       },
     ],

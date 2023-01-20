@@ -15,8 +15,8 @@ export class MenuService {
               private webApiService: WebApiService
               ) { }
 
-  public getMenu(): Observable<any> {
-    return this.webApiService.get(this.URL_END_POINT);
+  public getMenu(role:any): Observable<any> {
+    return this.webApiService.get(this.URL_END_POINT+"?rol_id="+role);
   }
 
 }

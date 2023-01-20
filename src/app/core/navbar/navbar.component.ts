@@ -25,7 +25,7 @@ export class NavbarComponent implements OnInit {
 
   getMenu(){
     // console.log('token:',localStorage.getItem('token'));
-    this.httpmenu.getMenu().subscribe((data : any) => {
+    this.httpmenu.getMenu(this.http.role).subscribe((data : any) => {
       this.menu = data.body
     })
   }

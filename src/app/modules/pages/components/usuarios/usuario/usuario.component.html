@@ -57,6 +57,18 @@
             </mat-error>
           </mat-form-field>
 
+          <mat-form-field class="w-100" appearance="fill">
+            <mat-label>Roles</mat-label>
+            <mat-select required [(ngModel)]="UsuarioForm.rol_id" name="rol_id" #rol_id="ngModel">
+              <mat-option value="">-- seleccionar --</mat-option>
+              <mat-option *ngFor="let rol of RolesList" 
+              [value]="rol.id">{{rol.nombre}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="rol_id.errors && isSubmitted && rol_id?.errors?.['required']">
+              El Rol es requerido
+            </mat-error>
+          </mat-form-field>
+
           <div class="w-100" appearance="fill">
             <label id="in_estado" class="label-radio-group">Estado <span class="requiredStar"> * </span></label>
             <mat-radio-group 

@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { snackBarHelper } from 'src/app/modules/pages/helpers/snackbar.helper';
 import { Usuario } from 'src/app/modules/pages/models/usuario.models';
 import { UsuariosService } from 'src/app/modules/pages/services/usuarios.service';
+import { RolesService } from '../../../services/roles.service';
 
 
 @Component({
@@ -16,6 +17,7 @@ import { UsuariosService } from 'src/app/modules/pages/services/usuarios.service
 export class UsuarioComponent implements OnInit {
 
   UsuarioForm: Usuario = new Usuario();
+  RolesList:any= [];
 
   @ViewChild("dataForm")
   dataForm!: NgForm;
@@ -29,7 +31,8 @@ export class UsuarioComponent implements OnInit {
             private snackbar: snackBarHelper, 
             private route: ActivatedRoute, 
             private router: Router,
-            private http: UsuariosService
+            private http: UsuariosService,
+            private httprole: RolesService
             ) { }
 
   ngOnInit(): void {
@@ -38,7 +41,23 @@ export class UsuarioComponent implements OnInit {
       this.titulo_vista = 'Actualizar';
       this.getClienteDetailById();
     }
-    
+    this.getAllRoles();
+  }
+
+
+  async getAllRoles() {
+    this.httprole.getAllData().subscribe((data : any) => {
+      if(data.ok){
+      this.RolesList = data.body;
+      }
+    },
+    (error : any)=> {
+        if (error) {
+          if (error.status == 404) {
+            this.RolesList = [];
+          }
+        }
+      });
   }
 
   getClienteDetailById() {
