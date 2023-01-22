@@ -68,7 +68,7 @@ export class UsuariosService {
   }
 
   validarTokenUser(): boolean {
-    if (this.token || this.role == 2) {
+    if (this.token && this.role == 2) {
       return true;
     } else {
       this.router.navigateByUrl('/login');
